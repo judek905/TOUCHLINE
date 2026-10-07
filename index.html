@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Touchline – Live football, replays and premium passes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#live" aria-label="Touchline home">Touchline</a>
+  <nav aria-label="Main">
+    <a href="#live">Live</a>
+    <a href="#replays">Replays</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#premium">Premium</a>
+  </nav>
+  <button class="btn btn-gold" data-open-pay>Go premium</button>
+</header>
+
+<main>
+  <section id="live" class="hero">
+    <div class="stage">
+      <div class="player" id="player">
+        <video id="liveVideo" controls playsinline poster="" aria-label="Live match stream"></video>
+        <div class="scorebug" aria-live="polite">
+          <span class="live-tag"><i></i>Live</span>
+          <b id="homeName">Kampala City</b>
+          <strong id="score">2 – 1</strong>
+          <b id="awayName">Entebbe United</b>
+          <span id="clock">67'</span>
+        </div>
+        <div class="lock" id="lock" hidden>
+          <h2>Your free preview has ended</h2>
+          <p>Unlock the full match, replays and no ads with a premium pass.</p>
+          <button class="btn btn-gold" data-open-pay>See premium options</button>
+        </div>
+      </div>
+      <p class="hint" id="previewHint">Free preview: 2 minutes of live play. Premium watches the whole match.</p>
+    </div>
+
+    <aside class="rail" aria-label="Today's matches">
+      <h2>On today</h2>
+      <ul id="fixtures"></ul>
+    </aside>
+  </section>
+
+  <section id="replays" class="block">
+    <div class="block-head">
+      <h2>Past games</h2>
+      <div class="chips" id="chips" role="group" aria-label="Filter by competition"></div>
+    </div>
+    <div class="grid" id="replayGrid"></div>
+  </section>
+
+  <section id="gallery" class="block">
+    <div class="block-head"><h2>Matchday gallery</h2></div>
+    <div class="gallery" id="galleryGrid"></div>
+  </section>
+
+  <section id="premium" class="block premium">
+    <div class="block-head"><h2>Pick a pass</h2></div>
+    <div class="plans" id="plans"></div>
+    <p class="fine">Pay by Mobile Money to <b>0748756534</b>. Prices are examples; edit them in <code>script.js</code>.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Touchline</span>
+  <span>Support and payments: 0748756534</span>
+</footer>
+
+<dialog id="payDialog" aria-labelledby="payTitle">
+  <form method="dialog" class="x"><button aria-label="Close">×</button></form>
+  <div id="payStep1">
+    <h2 id="payTitle">Choose your pass</h2>
+    <div class="plan-pick" id="planPick"></div>
+    <label>Your name<input id="payName" autocomplete="name" placeholder="e.g. Jude Kakama"></label>
+    <label>Your Mobile Money number<input id="payPhone" inputmode="tel" autocomplete="tel" placeholder="07XXXXXXXX"></label>
+    <p class="err" id="payErr" role="alert"></p>
+    <button class="btn btn-gold wide" id="toStep2">Continue</button>
+  </div>
+  <div id="payStep2" hidden>
+    <h2>Send your payment</h2>
+    <ol class="steps">
+      <li>Open Mobile Money and choose <b>Send money</b>.</li>
+      <li>Send <b id="payAmount"></b> to <b class="num">0748756534</b>.</li>
+      <li>Use this reference: <b class="num" id="payRef"></b></li>
+      <li>Come back here and press <b>I've paid</b>.</li>
+    </ol>
+    <button class="btn btn-gold wide" id="confirmPaid">I've paid</button>
+    <button class="btn btn-ghost wide" id="backStep">Back</button>
+  </div>
+  <div id="payStep3" hidden>
+    <h2>Premium unlocked</h2>
+    <p id="payDone"></p>
+    <button class="btn btn-gold wide" id="closeDone">Start watching</button>
+  </div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.15/dist/hls.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
